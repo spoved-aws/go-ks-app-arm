@@ -1,0 +1,81 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/kanukhosla10/go-kubesimplify
+  tag: {{ image_deploy_tag }}
+  pullPolicy: Always
+
+resources:
+  requests:
+    memory: '350Mi'
+    cpu: '250m'
+  limits:
+    memory: '500Mi'
+    cpu: '500m'
+
+probes:
+  readiness:
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  liveness:
+    initialDelaySeconds: 15
+    periodSeconds: 20
+
+containerPort: 8080
+readinessProbe:
+  port: 8080
+livenessProbe:
+  port: 8080
+
+autoscaling:
+  hpaName: go-ks1-app-hpa
+  minReplicas: 1
+  maxReplicas: 10
+  cpu:
+    averageUtilization: 20
+  memory:
+    averageValue: '350Mi'
+
+service:
+  name: go-ks1-app-arm64-service
+  portName: http
+  port: 8089
+  type: ClusterIP
+
+ingress:
+  entrypoints: websecure
+  tlsEnabled: "true"
+  clusterIssuer: letsencrypt-prod
+  ingresssApp: go-ks1-traefik
+  appHost: go-ks1.654537853.xyz
+  appSecretName: go-ks1-app-com-tls
+  argoHost: argo-ks1.654537853.xyz
+  argoSecretName: argo-ks-com-tls
+
+argocd:
+  namespace: argocd
+  serviceName: argocd-server
+  servicePort: 80
+
+postgresql:
+  name: goks-postgresql
+  instances: 1
+  storageSize: '1Gi'
+  database: goals_database
+  owner: goals_user
+  port: 5432
+  # secretName: {{ .Values.clusterSecret.name }}
+
+
+postgresqlSecret:
+  name: postgresql-credentials
+  secretData:
+    password: new_password
+    username: goals_user
+
+# Secret for Postgres Cluster
+clusterSecret:
+  name: my-postgresql-credentials
+  credentials:
+    username: goals_user
+    password: new_password
