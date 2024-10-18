@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: goks_app
+  name: ksarm
   namespace: argocd  # This is the ArgoCD namespace, not the target namespace
 spec:
   project: default
