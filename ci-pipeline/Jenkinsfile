@@ -6,6 +6,7 @@ pipeline {
         KO_DEFAULTBASEIMAGE = 'alpine:3'
         GIT_COMMITTER_EMAIL = 'kanukhosla10@gmail.com'
         GIT_COMMITTER_NAME = 'spoved-aws'
+        GIT_BRANCH ='https://github.com/spoved-aws/go-ks-app-arm.git'
 
         GO_PATH = '/usr/local/go/bin'
         KO_PATH = '/usr/local/bin'
@@ -16,7 +17,7 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/spoved-aws/go-kubesimplify.git'
+                git branch: 'main', url: "${env.GIT_BRANCH}"
             }
         }
 

@@ -28,7 +28,7 @@ livenessProbe:
   port: 8080
 
 autoscaling:
-  hpaName: go-ks1-app-hpa
+  hpaName: go-ks-app-hpa
   minReplicas: 1
   maxReplicas: 10
   cpu:
@@ -37,7 +37,7 @@ autoscaling:
     averageValue: '350Mi'
 
 service:
-  name: go-ks1-app-arm64-service
+  name: go-ks-app-arm64-service
   portName: http
   port: 8089
   type: ClusterIP
@@ -46,10 +46,10 @@ ingress:
   entrypoints: websecure
   tlsEnabled: "true"
   clusterIssuer: letsencrypt-prod
-  ingresssApp: go-ks1-traefik
-  appHost: go-ks1.654537853.xyz
-  appSecretName: go-ks1-app-com-tls
-  argoHost: argo-ks1.654537853.xyz
+  ingresssApp: go-ks-traefik
+  appHost: go-ks.654537853.xyz
+  appSecretName: go-ks-app-com-tls
+  argoHost: argo-ks.654537853.xyz
   argoSecretName: argo-ks-com-tls
 
 argocd:
