@@ -1,17 +1,17 @@
 
-#Complete DevOps Project
-###Go Application 
-##Local Test - Docker Method
-###Running Locally in arm64 ubuntu 
-###Initialising for base image
+# Complete DevOps Project
+### Go Application 
+## Local Test - Docker Method
+### Running Locally in arm64 ubuntu 
+### Initialising for base image
 ```
 alpine:3 base
 ``` 
-###Building OCI artifact using bsf and ko
+### Building OCI artifact using bsf and ko
 ```
 KO_DOCKER_REPO=docker.io/kanukhosla10/go-kubesimplify KO_DEFAULTBASEIMAGE=alpine:3 ko build --bare -t v1 . (change your image names here)
 ```
-###Running using Docker
+### Running using Docker
 
 ```
 docker run -d --name grafana -p 3000:3000 grafana/grafana
@@ -41,31 +41,31 @@ docker run -d \
   -e SSL=disable \
  ttl.sh/devops-project-1a3a3957a5f042748486580be307ed8e@sha256:9ae320cdf05700210dd50ebefa6b3cd4a11ca2feaad1946f6715e0ec725bda62
 ```
-##Kubernetes - k3s Cluster
+## Kubernetes - k3s Cluster
 
 Aiming to save this entire project in the below structure.
 
-###Manual Installations
+### Manual Installations
 
-####1. Cert manager
+#### 1. Cert manager
 ```
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
 ```
-####2. Install Kube prometheus stack
+#### 2. Install Kube prometheus stack
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
 
 ```
-####3. Getting Grafana login secret for admin user
+#### 3. Getting Grafana login secret for admin user
 
 ```
 kubectl get secret --namespace monitoring kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 kubectl port-forward svc/grafana 3000:80 -n monitoring
 ```
 
-####4. Install Traefik ingress gateway for the app and argocd
+#### 4. Install Traefik ingress gateway for the app and argocd
 ```
 kubectl apply -f k8s-manifests/app_with_traefik/ingress/traefik-resource.yaml
 ```
@@ -73,7 +73,7 @@ NOTE: Trafik resource needs to be deployed only once in the cluster and that tak
 
 Ref - https://github.com/spoved-aws/go-kubesimplify/blob/main/README-arm64v1.md#install-traefik-ingress-gateway-for-the-app-and-argocd
 
-####5. Install Cloudnative postgress DB
+#### 5. Install Cloudnative postgress DB
 ```
 kubectl apply --server-side -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/r
 ```
@@ -92,10 +92,10 @@ Why you need both:
 Cluster is installed via Helm Charts + ArgoCD. 
 
 
-###CI - Jenkins
+### CI - Jenkins
 
 Pipeline - ```ci-pipeline/Jenkinsfile```
-####Stages of the Pipeline
+#### Stages of the Pipeline
 ```
 1. Checkout
 2. Log in to Docker Hub
