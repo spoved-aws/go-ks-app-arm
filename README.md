@@ -1,8 +1,14 @@
 
 # Complete DevOps Project
+
+### To Do
+1. Naming the application
+2. kustomize
+3. Managing secrets as they're in plain text currently
+
 ### Go Application 
 ## Local Test - Docker Method
-### Running Locally in arm64 ubuntu 
+
 ### Initialising for base image
 ```
 alpine:3 base
@@ -44,6 +50,8 @@ docker run -d \
 ## Kubernetes - k3s Cluster
 
 Aiming to save this entire project in the below structure.
+<img width="542" alt="image" src="https://github.com/user-attachments/assets/e7e79242-b2bd-42c0-bd31-28e5e0cf154f">
+
 
 ### Manual Installations
 
@@ -95,6 +103,31 @@ Cluster is installed via Helm Charts + ArgoCD.
 ### CI - Jenkins
 
 Pipeline - ```ci-pipeline/Jenkinsfile```
+
+Logic for image tagging - using short SHA to tag the image and use the jinja template to populate the values.yaml file with the short SHA and push the values.yaml file to git.
+
+        stage('Generate deploy manifest from Jinja template') {
+            steps {
+                sh '''
+                  python3 -m venv venv
+                  . venv/bin/activate
+                  pip install jinja2-cli
+                  jinja2 tmpl/values.j2 -o charts/go-ks-app-arm/values.yaml -D image_deploy_tag=sha-${sha_short} --strict
+                  deactivate
+                '''
+            }
+        }
+
+
+      stage('Commit deploy manifest on local repo') {
+            steps {
+                sh '''
+                  git add charts/go-ks-app-arm/values.yaml
+                  git commit -s -m "updated image tag"
+                '''
+            }
+        }
+
 #### Stages of the Pipeline
 ```
 1. Checkout
@@ -109,3 +142,15 @@ Pipeline - ```ci-pipeline/Jenkinsfile```
 10. Commit deploy manifest on local repo
 11. Push deploy manifests to remote repo
 ```
+
+### CD - HELM + ArgoCD
+Application is deployed in the **ksgo-arm** namespace. 
+
+Helm Charts: ```charts/go-ks-app-arm```
+
+
+### Post Sync of the Application in ArgoCD
+
+
+
+
