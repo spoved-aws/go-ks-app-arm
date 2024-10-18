@@ -4,16 +4,19 @@ metadata:
   name: {{ include "go-ks-app-arm.fullname" . }}
   # namespace: {{ .Values.namespace }}
   labels:
-    app: {{ include "go-ks-app-arm.labels" . | nindent 4 }}
+    app: {{ include "go-ks-app-arm.name" . }}
+  {{ include "go-ks-app-arm.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "go-ks-app-arm.selectorLabels" . | nindent 6 }}
+      app: {{ include "go-ks-app-arm.name" . }}
+    {{ include "go-ks-app-arm.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ include "go-ks-app-arm.selectorLabels" . | nindent 8 }}
+        app: {{ include "go-ks-app-arm.name" . }}
+      {{ include "go-ks-app-arm.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
