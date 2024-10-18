@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ks-go-app-arm-helm
+  name: argo
   namespace: argocd  # This is the ArgoCD namespace, not the target namespace
 spec:
   project: default
