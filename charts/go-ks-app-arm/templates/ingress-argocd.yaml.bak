@@ -1,15 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "argo-ks.ingressName" . }}
-  # namespace: {{ .Values.argocd.namespace }}
+  name: {{ .Values.ingress.argoIngressName }}
+  namespace: argocd
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: {{ .Values.ingress.entrypoints }}
     traefik.ingress.kubernetes.io/router.tls: "{{ .Values.ingress.tlsEnabled }}"
     cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.ingress.argoHost }}
       http:
         paths:
           - path: /
@@ -21,5 +21,5 @@ spec:
                   number: {{ .Values.argocd.servicePort }}
   tls:
     - hosts:
-        - {{ .Values.ingress.host }}
+        - {{ .Values.ingress.argoHost }}
       secretName: {{ .Values.ingress.secretName }}

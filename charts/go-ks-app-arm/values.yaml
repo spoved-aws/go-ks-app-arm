@@ -49,13 +49,6 @@ ingress:
   ingresssApp: go-ks-traefik
   appHost: go-ks.654537853.xyz
   appSecretName: go-ks-app-com-tls
-  argoHost: argo-ks.654537853.xyz
-  argoSecretName: argo-ks-com-tls
-
-argocd:
-  namespace: argocd
-  serviceName: argocd-server
-  servicePort: 80
 
 postgresql:
   name: goks-postgresql
@@ -64,7 +57,6 @@ postgresql:
   database: goals_database
   owner: goals_user
   port: 5432
-  # secretName: {{ .Values.clusterSecret.name }}
 
 
 postgresqlSecret:
@@ -73,7 +65,6 @@ postgresqlSecret:
     password: new_password
     username: goals_user
 
-# Secret for Postgres Cluster
 clusterSecret:
   name: my-postgresql-credentials
   credentials:
