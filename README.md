@@ -8,6 +8,9 @@
 4. Cluster secret and app sectet for db same ?
 
 ### Go Application 
+
+<img width="1153" alt="image" src="https://github.com/user-attachments/assets/6d37cd94-29cb-495f-9274-c4a8efa85259">
+
 ## Local Test - Docker Method
 
 ### Initialising for base image
