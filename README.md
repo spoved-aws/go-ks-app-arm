@@ -5,6 +5,7 @@
 1. Naming the application
 2. kustomize
 3. Managing secrets as they're in plain text currently
+4. Cluster secret and app sectet for db same ?
 
 ### Go Application 
 ## Local Test - Docker Method
@@ -148,10 +149,34 @@ Logic for image tagging - using short SHA to tag the image and use the jinja tem
 ### CD - HELM + ArgoCD
 Application is deployed in the **ksgo-arm** namespace. 
 
-Helm Charts: ```charts/go-ks-app-arm```
+#### What are we deploying with HELM Charts
 
+
+Helm Charts: ```charts/go-ks-app-arm```
+```
+1. application deployment file.
+2. application sevice - cluster ip.
+3. horizonal pod autoscaler.
+4. app ingress - with dns and traefik.
+**Important**: Port 80,443 should be open in the router else letsencrypt acme challenge fails to generate the certtificate. 
+5. postgres cluster - for cloud native postgress instance.
+6. postgres cluster secrets
+7. secret for the application to access db - This may be same as above ( under investigation ).
+```
 
 ### Post Sync of the Application in ArgoCD
+
+#### Change the password for the user
+```kubectl exec -it goks-postgresql-1 -n ksgo-arm -- psql -U postgres -c "ALTER USER goals_user WITH PASSWORD 'new_password';"```
+This command connects to the PostgreSQL instance running inside the goks-postgresql-1 pod as the postgres user and changes the password for the goals_user to new_password.
+
+#### Create Table inside the database
+1. Window 1
+```kubectl port-forward goks-postgresql-1 -n ksgo-arm 5432:5432```
+2. Window 2
+```PGPASSWORD='new_password' psql -h 127.0.0.1 -U goals_user -d goals_database -c "CREATE TABLE goals ( id SERIAL PRIMARY KEY, goal_name VARCHAR(255) NOT NULL);"```
+
+
 
 
 
