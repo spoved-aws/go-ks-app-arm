@@ -7,6 +7,9 @@
 3. Managing secrets as they're in plain text currently
 4. Cluster secret and app sectet for db same ?
 
+<img width="1121" alt="image" src="https://github.com/user-attachments/assets/b7722107-5f5e-4e57-b8ce-3f4eecde48a8" />
+
+
 ### Go Application 
 
 <img width="1153" alt="image" src="https://github.com/user-attachments/assets/6d37cd94-29cb-495f-9274-c4a8efa85259">
