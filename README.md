@@ -19,7 +19,9 @@
 ### Initializing for base image
 ```
 alpine:3 base
-``` 
+```
+NOTE: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm. 
+
 ### Building OCI artifact using bsf and ko
 ```
 KO_DOCKER_REPO=docker.io/xxxxxxxx/go-kubesimplify KO_DEFAULTBASEIMAGE=alpine:3 ko build --bare -t v1 . (change your image names here)
