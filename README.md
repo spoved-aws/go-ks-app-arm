@@ -41,6 +41,9 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 ```
 docker run -d --name prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
+Note: In the prometheus.yml we define the url from which prometheus will scrape the metrics.
+<img width="724" alt="image" src="https://github.com/user-attachments/assets/54c20a9d-e5bc-40ec-a868-28be6da8ff74" />
+
 ```
 docker run --name local-postgres -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5432:5432 -d postgres
 ```
