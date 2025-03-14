@@ -30,6 +30,9 @@ NOTE: KO makes go image building very easy and can use static assets that can bu
 ```
 KO_DOCKER_REPO=docker.io/xxxxxxxx/go-kubesimplify KO_DEFAULTBASEIMAGE=alpine:3 ko build --bare -t v1 . (change your image names here)
 ```
+### Scanning the docker image for vulnerabilities
+grype can be used to scan.
+<img width="852" alt="image" src="https://github.com/user-attachments/assets/cfa8500d-239d-454f-b42a-e6481302309c" />
 ### Running using Docker
 
 ```
