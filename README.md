@@ -113,13 +113,13 @@ The command installs the CloudNativePG Custom Resource Definitions (CRDs) and th
 
 Here’s why it’s needed:
 
-	1.	CRDs: This command installs the Custom Resource Definitions (CRDs) for CloudNative PostgreSQL. These CRDs allow Kubernetes to understand and manage PostgreSQL clusters as a native resource within your cluster.
-	2.	Controller: It also installs the CloudNativePG controller, which is a Kubernetes operator. The controller watches for any CloudNativePG Cluster custom resources you define (like the one you have in your YAML with kind Cluster) and ensures that the necessary PostgreSQL pods and resources (such as StatefulSets, services, etc.) are created and managed according to the spec.
+1. CRDs: This command installs the Custom Resource Definitions (CRDs) for CloudNative PostgreSQL. These CRDs allow Kubernetes to understand and manage PostgreSQL clusters as a native resource within your cluster.
+2. Controller: It also installs the CloudNativePG controller, which is a Kubernetes operator. The controller watches for any CloudNativePG Cluster custom resources you define (like the one you have in your YAML with kind Cluster) and ensures that the necessary PostgreSQL pods and resources (such as StatefulSets, services, etc.) are created and managed according to the spec.
 
 Why you need both:
 
-	•	CRDs define the Cluster resource: Without the CRDs installed, Kubernetes won’t recognize your Cluster kind in the YAML.
-	•	The controller reconciles the resources: The controller watches for any changes or creation of CloudNativePG Cluster resources and orchestrates the underlying PostgreSQL pods, PVCs, and services accordingly.
+- CRDs define the Cluster resource: Without the CRDs installed, Kubernetes won’t recognize your Cluster kind in the YAML.
+- The controller reconciles the resources: The controller watches for any changes or creation of CloudNativePG Cluster resources and orchestrates the underlying PostgreSQL pods, PVCs, and services accordingly.
 
 Cluster is installed via Helm Charts + ArgoCD. 
 
