@@ -20,7 +20,7 @@
 ```
 alpine:3 base
 ```
-_Note: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm._
+<mark>_Note: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm._<mark>
 
 ### Building OCI artifact using bsf and ko
 _Note: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently._
