@@ -20,10 +20,10 @@
 ```
 alpine:3 base
 ```
-_Note: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm. _
+_Note: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm._
 
 ### Building OCI artifact using bsf and ko
-_Note: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently. _
+_Note: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently._
 
 <img width="850" alt="image" src="https://github.com/user-attachments/assets/9551da49-1ec8-4df0-aeb8-e605848a8e55" />
 
@@ -31,7 +31,7 @@ _Note: KO makes go image building very easy and can use static assets that can b
 KO_DOCKER_REPO=docker.io/xxxxxxxx/go-kubesimplify KO_DEFAULTBASEIMAGE=alpine:3 ko build --bare -t v1 . (change your image names here)
 ```
 ### Scanning the docker image for vulnerabilities
-grype can be used to scan.
+grype is used to scan.
 <img width="852" alt="image" src="https://github.com/user-attachments/assets/cfa8500d-239d-454f-b42a-e6481302309c" />
 ### Running using Docker
 
