@@ -23,6 +23,10 @@ alpine:3 base
 NOTE: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm. 
 
 ### Building OCI artifact using bsf and ko
+NOTE: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently. 
+
+<img width="850" alt="image" src="https://github.com/user-attachments/assets/9551da49-1ec8-4df0-aeb8-e605848a8e55" />
+
 ```
 KO_DOCKER_REPO=docker.io/xxxxxxxx/go-kubesimplify KO_DEFAULTBASEIMAGE=alpine:3 ko build --bare -t v1 . (change your image names here)
 ```
