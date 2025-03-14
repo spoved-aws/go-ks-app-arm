@@ -20,10 +20,10 @@
 ```
 alpine:3 base
 ```
-NOTE: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm. 
+_Note: Did not create the base 0 CVE image for the arm architecture. Buildsafe fails for arm. _
 
 ### Building OCI artifact using bsf and ko
-NOTE: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently. 
+_Note: KO makes go image building very easy and can use static assets that can bundle the html files very efficiently. _
 
 <img width="850" alt="image" src="https://github.com/user-attachments/assets/9551da49-1ec8-4df0-aeb8-e605848a8e55" />
 
@@ -41,7 +41,7 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 ```
 docker run -d --name prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
-Note: In the prometheus.yml we define the url from which prometheus will scrape the metrics.
+_Note: In the prometheus.yml we define the url from which prometheus will scrape the metrics._
 <img width="724" alt="image" src="https://github.com/user-attachments/assets/54c20a9d-e5bc-40ec-a868-28be6da8ff74" />
 
 ```
