@@ -47,6 +47,9 @@ docker run -d --name prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prome
 ```
 docker run --name local-postgres -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5432:5432 -d postgres
 ```
+<mark>_Note: We're creating the table in prometheus db here that was define in the main.go file._<mark>
+<img width="679" alt="image" src="https://github.com/user-attachments/assets/060d9d49-3842-4b96-902d-34dedb0da624" />
+
 ```
 docker exec -it local-postgres psql -U myuser -d mydb
 CREATE TABLE goals (
