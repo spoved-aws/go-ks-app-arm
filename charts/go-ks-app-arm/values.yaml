@@ -49,6 +49,13 @@ ingress:
   ingresssApp: go-ks-traefik
   appHost: go-ks.654537853.xyz
   appSecretName: go-ks-app-com-tls
+  argoIngressName: argo-ks-ingress
+  argoHost: argo-ks.654537853.xyz
+  secretName: argo-ks-tls
+
+argocd:
+  serviceName: argocd-server
+  servicePort: 80
 
 postgresql:
   name: goks-postgresql
