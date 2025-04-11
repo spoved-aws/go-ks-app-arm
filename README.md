@@ -94,6 +94,7 @@ Access prometeus on the Mac Host machine by forwarding it to all interfaces so t
 ```
 kubectl port-forward -n monitoring svc/kube-prometheus-stack-prometheus --address 0.0.0.0 9090:9090
 ```
+Then from your Mac, open:
 ```
 http://192.168.0.192:9090
 ```
@@ -103,7 +104,15 @@ http://192.168.0.192:9090
 kubectl get secret --namespace monitoring kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 kubectl port-forward svc/grafana 3000:80 -n monitoring
 ```
+Access grafana on the Mac Host machine by forwarding it to all interfaces so the Mac can access it via the VM’s IP:
 
+```
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana --address 0.0.0.0 3000:80
+```
+Then from your Mac, open:
+```
+http://192.168.0.192:3000
+```
 #### 4. Install Traefik ingress gateway for the app and argocd
 ```
 kubectl apply -f k8s-manifests/app_with_traefik/ingress/traefik-resource.yaml
