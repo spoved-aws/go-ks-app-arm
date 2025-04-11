@@ -88,7 +88,14 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
+```
+Access prometeus on the Mac Host machine by forwarding it to all interfaces so the Mac can access it via the VM’s IP:
 
+```
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-prometheus --address 0.0.0.0 9090:9090
+```
+```
+http://192.168.0.192:9090
 ```
 #### 3. Getting Grafana login secret for admin user
 
